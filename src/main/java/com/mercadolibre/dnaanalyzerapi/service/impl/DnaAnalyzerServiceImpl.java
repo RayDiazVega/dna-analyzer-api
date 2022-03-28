@@ -11,6 +11,10 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
 
   @Override
   public void isMutant(Human human) {
+    if (human.getDna().stream().anyMatch(sequence -> sequence.length() != human.getDna().size())) {
+      throw new IllegalArgumentException(
+          "The length of each sequence must be equal to the number of sequences");
+    }
     log.info(human.toString());
   }
 }
