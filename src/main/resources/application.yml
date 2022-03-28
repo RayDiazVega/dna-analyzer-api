@@ -1,1 +1,16 @@
+spring:
+  application:
+    name: spring boot dna-analyzer-api
+
+server:
+  port: 8080
+  servlet:
+    context-path: /dna-analyzer-api
+
+info:
+  project:
+    version: @project.version@
+    name: @project.name@
+    description: @project.description@
+
 

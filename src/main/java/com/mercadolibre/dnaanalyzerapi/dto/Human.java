@@ -1,6 +1,7 @@
 package com.mercadolibre.dnaanalyzerapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,14 @@ public class Human {
   @JsonIgnore
   private String id;
 
+  @Schema(description = "DNA sequence", example = "[\n"
+      + "        \"ATGCGA\",\n"
+      + "        \"CAGTGC\",\n"
+      + "        \"TTATGT\",\n"
+      + "        \"AGAAGG\",\n"
+      + "        \"CCCCTA\",\n"
+      + "        \"TCACTG\"\n"
+      + "    ]")
   @NotNull(message = "dna is required")
   @NotEmpty(message = "dna can't be empty")
   private List<
