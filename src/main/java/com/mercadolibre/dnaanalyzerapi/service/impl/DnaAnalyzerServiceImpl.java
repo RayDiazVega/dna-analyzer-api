@@ -1,6 +1,7 @@
 package com.mercadolibre.dnaanalyzerapi.service.impl;
 
 import com.mercadolibre.dnaanalyzerapi.dto.Human;
+import com.mercadolibre.dnaanalyzerapi.dto.Stats;
 import com.mercadolibre.dnaanalyzerapi.exception.NotMutantException;
 import com.mercadolibre.dnaanalyzerapi.service.DnaAnalyzerService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,8 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
     int size = dna.length;
     int horizontalMatches = 0;
     int verticalMatches = 0;
-    int obliqueMatches = 0;
+    int obliqueLeftMatches = 0;
+    int obliqueRightMatches = 0;
 
     for (int i = 0; i < size; i++) {
       for (int j = 0; j < size; j++) {
@@ -53,30 +55,35 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
           if (dna[i][j] == dna[i + 1][j + 1] &&
               dna[i + 1][j + 1] == dna[i + 2][j + 2] &&
               dna[i + 2][j + 2] == dna[i + 3][j + 3]) {
-            if (obliqueMatches < 1) {
-              obliqueMatches++;
+            if (obliqueLeftMatches < 1) {
+              obliqueLeftMatches++;
             } else {
-              throw new NotMutantException("There is more than one oblique match");
+              throw new NotMutantException("There is more than one oblique left match");
             }
           }
 
           if (dna[i][size - 1 - j] == dna[i + 1][size - 2 - j] &&
               dna[i + 1][size - 2 - j] == dna[i + 2][size - 3 - j] &&
               dna[i + 2][size - 3 - j] == dna[i + 3][size - 4 - j]) {
-            if (obliqueMatches < 1) {
-              obliqueMatches++;
+            if (obliqueRightMatches < 1) {
+              obliqueRightMatches++;
             } else {
-              throw new NotMutantException("There is more than one oblique match");
+              throw new NotMutantException("There is more than one oblique right match");
             }
           }
         }
       }
     }
 
-    if (horizontalMatches + verticalMatches + obliqueMatches == 0) {
+    if (horizontalMatches + verticalMatches + obliqueLeftMatches + obliqueRightMatches == 0) {
       throw new NotMutantException("There are no matches");
     }
 
     log.info("true, is mutant");
+  }
+
+  @Override
+  public Stats getStats() {
+    return null;
   }
 }
