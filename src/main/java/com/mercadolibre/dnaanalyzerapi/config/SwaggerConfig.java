@@ -30,21 +30,27 @@ public class SwaggerConfig {
   @Bean
   public OpenApiCustomiser openApiCustomiser() {
     return openApi -> openApi.getPaths().values().parallelStream().forEach(pathItem ->
-        pathItem.readOperations().parallelStream().forEach(operation -> operation.getResponses()
-            .addApiResponse("400", new ApiResponse().description("Bad Request")
-                .content(new Content().addMediaType(APPLICATION_JSON_VALUE, new MediaType()
-                    .example("{\n"
-                        + "    \"timestamp\": \"2022-03-11T14:36:48.4514789\",\n"
-                        + "    \"error\": [\n"
-                        + "        \"only values A,T,C and G are allowed\"\n"
-                        + "    ],\n"
-                        + "    \"message\": \"Client error\"\n"
-                        + "}"))))
-            .addApiResponse("500", new ApiResponse().description("Internal Server Error")
-                .content(new Content().addMediaType(APPLICATION_JSON_VALUE, new MediaType()
-                    .example("{\n"
-                        + "    \"timestamp\": \"2022-03-11T14:36:48.4514789\",\n"
-                        + "    \"message\": \"Server error\"\n"
-                        + "}"))))));
+        pathItem.readOperations().parallelStream().forEach(operation -> {
+          if (operation.getOperationId().equalsIgnoreCase("isMutant")) {
+            operation.getResponses()
+                .addApiResponse("400", new ApiResponse().description("Bad Request")
+                    .content(new Content().addMediaType(APPLICATION_JSON_VALUE, new MediaType()
+                        .example("{\n"
+                            + "    \"timestamp\": \"2022-03-11T14:36:48.4514789\",\n"
+                            + "    \"error\": [\n"
+                            + "        \"only values A,T,C and G are allowed\"\n"
+                            + "    ],\n"
+                            + "    \"message\": \"Client error\"\n"
+                            + "}"))))
+                .addApiResponse("403", new ApiResponse().description("Forbidden"));
+          }
+          operation.getResponses()
+              .addApiResponse("500", new ApiResponse().description("Internal Server Error")
+                  .content(new Content().addMediaType(APPLICATION_JSON_VALUE, new MediaType()
+                      .example("{\n"
+                          + "    \"timestamp\": \"2022-03-11T14:36:48.4514789\",\n"
+                          + "    \"message\": \"Server error\"\n"
+                          + "}"))));
+        }));
   }
 }
