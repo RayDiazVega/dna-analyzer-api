@@ -2,6 +2,11 @@ spring:
   application:
     name: spring boot dna-analyzer-api
 
+aws:
+  dynamodb:
+    accesskey: AKIAQERSPK2SCHKKOGXM
+    secretkey: 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
+
 server:
   port: 8080
   servlet:
