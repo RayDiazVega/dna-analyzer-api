@@ -2,7 +2,6 @@ package com.mercadolibre.dnaanalyzerapi.exception;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
@@ -30,12 +29,6 @@ public class RestControllerExceptionHandler {
     return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON)
         .body(Map.of("message", "Client error", "error", error,
             "timestamp", LocalDateTime.now()));
-  }
-
-  @ExceptionHandler(value = NotMutantException.class)
-  public ResponseEntity<Object> notMutantExceptionHandler(NotMutantException ex) {
-    ex.printStackTrace();
-    return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
   }
 
   @ExceptionHandler(value = Exception.class)

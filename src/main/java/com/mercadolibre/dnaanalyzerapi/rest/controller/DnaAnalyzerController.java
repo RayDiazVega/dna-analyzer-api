@@ -6,6 +6,7 @@ import com.mercadolibre.dnaanalyzerapi.service.DnaAnalyzerService;
 import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,9 +24,12 @@ public class DnaAnalyzerController {
 
   @Operation(summary = "Valid DNA sequence")
   @PostMapping(value = "/mutant/", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Void> isMutant(@Valid @RequestBody Human human) {
-    dnaAnalyzerService.isMutant(human);
-    return ResponseEntity.ok().build();
+  public ResponseEntity<Void> validateDNA(@Valid @RequestBody Human human) {
+    if (dnaAnalyzerService.validateDNA(human)) {
+      return ResponseEntity.ok().build();
+    } else {
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+    }
   }
 
   @Operation(summary = "Get verification statistics")

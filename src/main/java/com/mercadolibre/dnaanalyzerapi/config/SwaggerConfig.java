@@ -17,10 +17,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfig {
 
+  @Value("${info.project.version}")
+  private String projectVersion;
+
+  @Value("${info.project.name}")
+  private String projectName;
+
+  @Value("${info.project.description}")
+  private String projectDescription;
+
   @Bean
-  public OpenAPI openAPI(@Value("${info.project.version}") String projectVersion,
-      @Value("${info.project.name}") String projectName,
-      @Value("${info.project.description}") String projectDescription) {
+  public OpenAPI openAPI() {
     return new OpenAPI().info(
         new Info().version(projectVersion).title(projectName).description(projectDescription)
             .contact(new Contact().name("Raymundo Diaz Vega").email("raydiazvega@gmail.com"))
@@ -31,7 +38,7 @@ public class SwaggerConfig {
   public OpenApiCustomiser openApiCustomiser() {
     return openApi -> openApi.getPaths().values().parallelStream().forEach(pathItem ->
         pathItem.readOperations().parallelStream().forEach(operation -> {
-          if (operation.getOperationId().equalsIgnoreCase("isMutant")) {
+          if (operation.getOperationId().equalsIgnoreCase("validateDNA")) {
             operation.getResponses()
                 .addApiResponse("400", new ApiResponse().description("Bad Request")
                     .content(new Content().addMediaType(APPLICATION_JSON_VALUE, new MediaType()

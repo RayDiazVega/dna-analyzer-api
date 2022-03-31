@@ -1,24 +1,35 @@
 package com.mercadolibre.dnaanalyzerapi.service.impl;
 
+import com.mercadolibre.dnaanalyzerapi.dao.DnaAnalyzerDao;
 import com.mercadolibre.dnaanalyzerapi.dto.Human;
 import com.mercadolibre.dnaanalyzerapi.dto.Stats;
-import com.mercadolibre.dnaanalyzerapi.exception.NotMutantException;
 import com.mercadolibre.dnaanalyzerapi.service.DnaAnalyzerService;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
 
+  @Autowired
+  private DnaAnalyzerDao dnaAnalyzerDao;
+
   @Override
-  public void isMutant(Human human) {
+  public boolean validateDNA(Human human) {
     if (human.getDna().stream().anyMatch(sequence -> sequence.length() != human.getDna().size())) {
       throw new IllegalArgumentException(
           "The length of each sequence must be equal to the number of sequences");
     }
 
-    char[][] dna = human.getDna().stream().map(String::toCharArray).toArray(char[][]::new);
+    dnaAnalyzerDao.save(human);
+    return isMutant(human.getDna());
+  }
+
+  private boolean isMutant(List<String> humanDna) {
+
+    char[][] dna = humanDna.stream().map(String::toCharArray).toArray(char[][]::new);
     int size = dna.length;
     int horizontalMatches = 0;
     int verticalMatches = 0;
@@ -34,7 +45,8 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
             if (horizontalMatches < 1) {
               horizontalMatches++;
             } else {
-              throw new NotMutantException("There is more than one horizontal match");
+              log.error("There is more than one horizontal match");
+              return false;
             }
           }
         }
@@ -46,7 +58,8 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
             if (verticalMatches < 1) {
               verticalMatches++;
             } else {
-              throw new NotMutantException("There is more than one vertical match");
+              log.error("There is more than one vertical match");
+              return false;
             }
           }
         }
@@ -58,7 +71,8 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
             if (obliqueLeftMatches < 1) {
               obliqueLeftMatches++;
             } else {
-              throw new NotMutantException("There is more than one oblique left match");
+              log.error("There is more than one oblique left match");
+              return false;
             }
           }
 
@@ -68,7 +82,8 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
             if (obliqueRightMatches < 1) {
               obliqueRightMatches++;
             } else {
-              throw new NotMutantException("There is more than one oblique right match");
+              log.error("There is more than one oblique right match");
+              return false;
             }
           }
         }
@@ -76,10 +91,12 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
     }
 
     if (horizontalMatches + verticalMatches + obliqueLeftMatches + obliqueRightMatches == 0) {
-      throw new NotMutantException("There are no matches");
+      log.error("There are no matches");
+      return false;
     }
 
     log.info("true, is mutant");
+    return true;
   }
 
   @Override

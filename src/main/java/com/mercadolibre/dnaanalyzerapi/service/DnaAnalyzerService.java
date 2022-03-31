@@ -5,7 +5,7 @@ import com.mercadolibre.dnaanalyzerapi.dto.Stats;
 
 public interface DnaAnalyzerService {
 
-  void isMutant(Human human);
+  boolean validateDNA(Human human);
 
   Stats getStats();
 }
