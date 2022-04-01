@@ -5,6 +5,7 @@ import com.mercadolibre.dnaanalyzerapi.dto.Human;
 import com.mercadolibre.dnaanalyzerapi.dto.Stats;
 import com.mercadolibre.dnaanalyzerapi.service.DnaAnalyzerService;
 import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,19 +19,27 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
 
   @Override
   public boolean validateDNA(Human human) {
-    if (human.getDna().stream().anyMatch(sequence -> sequence.length() != human.getDna().size())) {
+
+    List<String> dna = human.getDna();
+
+    if (dna.stream().anyMatch(sequence -> sequence.length() != dna.size())) {
       throw new IllegalArgumentException(
           "The length of each sequence must be equal to the number of sequences");
     }
 
-    dnaAnalyzerDao.save(human);
-    return isMutant(human.getDna());
+    Optional<Human> optionalHuman = dnaAnalyzerDao.findByDna(dna);
+
+    if (optionalHuman.isPresent()) {
+      return optionalHuman.get().getIsMutant();
+    }
+
+    human.setIsMutant(isMutant(dna));
+    return dnaAnalyzerDao.save(human).getIsMutant();
   }
 
-  private boolean isMutant(List<String> humanDna) {
+  private boolean isMutant(List<String> dna) {
 
-    char[][] dna = humanDna.stream().map(String::toCharArray).toArray(char[][]::new);
-    int size = dna.length;
+    int size = dna.size();
     int horizontalMatches = 0;
     int verticalMatches = 0;
     int obliqueLeftMatches = 0;
@@ -39,9 +48,9 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
     for (int i = 0; i < size; i++) {
       for (int j = 0; j < size; j++) {
         if (j < size - 3) {
-          if (dna[i][j] == dna[i][j + 1] &&
-              dna[i][j + 1] == dna[i][j + 2] &&
-              dna[i][j + 2] == dna[i][j + 3]) {
+          if (dna.get(i).charAt(j) == dna.get(i).charAt(j + 1) &&
+              dna.get(i).charAt(j + 1) == dna.get(i).charAt(j + 2) &&
+              dna.get(i).charAt(j + 2) == dna.get(i).charAt(j + 3)) {
             if (horizontalMatches < 1) {
               horizontalMatches++;
             } else {
@@ -52,9 +61,9 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
         }
 
         if (i < size - 3) {
-          if (dna[i][j] == dna[i + 1][j] &&
-              dna[i + 1][j] == dna[i + 2][j] &&
-              dna[i + 2][j] == dna[i + 3][j]) {
+          if (dna.get(i).charAt(j) == dna.get(i + 1).charAt(j) &&
+              dna.get(i + 1).charAt(j) == dna.get(i + 2).charAt(j) &&
+              dna.get(i + 2).charAt(j) == dna.get(i + 3).charAt(j)) {
             if (verticalMatches < 1) {
               verticalMatches++;
             } else {
@@ -65,9 +74,9 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
         }
 
         if (j < size - 3 && i < size - 3) {
-          if (dna[i][j] == dna[i + 1][j + 1] &&
-              dna[i + 1][j + 1] == dna[i + 2][j + 2] &&
-              dna[i + 2][j + 2] == dna[i + 3][j + 3]) {
+          if (dna.get(i).charAt(j) == dna.get(i + 1).charAt(j + 1) &&
+              dna.get(i + 1).charAt(j + 1) == dna.get(i + 2).charAt(j + 2) &&
+              dna.get(i + 2).charAt(j + 2) == dna.get(i + 3).charAt(j + 3)) {
             if (obliqueLeftMatches < 1) {
               obliqueLeftMatches++;
             } else {
@@ -76,9 +85,9 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
             }
           }
 
-          if (dna[i][size - 1 - j] == dna[i + 1][size - 2 - j] &&
-              dna[i + 1][size - 2 - j] == dna[i + 2][size - 3 - j] &&
-              dna[i + 2][size - 3 - j] == dna[i + 3][size - 4 - j]) {
+          if (dna.get(i).charAt(size - 1 - j) == dna.get(i + 1).charAt(size - 2 - j) &&
+              dna.get(i + 1).charAt(size - 2 - j) == dna.get(i + 2).charAt(size - 3 - j) &&
+              dna.get(i + 2).charAt(size - 3 - j) == dna.get(i + 3).charAt(size - 4 - j)) {
             if (obliqueRightMatches < 1) {
               obliqueRightMatches++;
             } else {
@@ -90,7 +99,7 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
       }
     }
 
-    if (horizontalMatches + verticalMatches + obliqueLeftMatches + obliqueRightMatches == 0) {
+    if (horizontalMatches + verticalMatches + obliqueLeftMatches + obliqueRightMatches < 2) {
       log.error("There are no matches");
       return false;
     }
