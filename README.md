@@ -49,10 +49,12 @@ curl --location --request POST 'http://localhost:8080/dna-analyzer-api/mutant/' 
 curl --location --request GET 'http://localhost:8080/dna-analyzer-api/stats'
 ```
 
-Tambien se puede probar de manera local accediendo al Swagger en http://localhost:8080/dna-analyzer-api/swagger-ui/index.html#/
+Tambien se puede probar de manera local accediendo al Swagger
+en http://localhost:8080/dna-analyzer-api/swagger-ui/index.html#/
 
-Para probar la API hosteada en AWS use los endpoints `POST /mutant/` y `GET /stats`  en la carpeta AWS Endpoints de la coleccion o ejecutar los comandos anteriores cambiando 
-`localhost:8080` por `dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com`:
+Para probar la API hosteada en AWS use los endpoints `POST /mutant/` y `GET /stats`  en la carpeta
+AWS Endpoints de la coleccion o ejecutar los comandos anteriores cambiando `localhost:8080`
+por `dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com`:
 ```sh
 curl --location --request POST 'http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/mutant/' \
 --header 'Content-Type: application/json' \
@@ -67,8 +69,17 @@ curl --location --request POST 'http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1
     ]
 }'
 ```
+
  ```sh
 curl --location --request GET 'http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/stats'
 ```
-Tambien se puede probar la API hosteada en AWS accediendo al Swagger en http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/swagger-ui/index.html#/
 
+Tambien se puede probar la API hosteada en AWS accediendo al Swagger
+en http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/swagger-ui/index.html#/
+
+### Operaciones
+
+|  ENDPOINT  |              POST              |                   GET                   |
+|:----------:|:------------------------------:|:---------------------------------------:|
+| `/mutant/` | Valid DNA sequence, return 200 |         Not allowed, return 400         |
+|  `/stats`  |    Not allowed, return 400     | Get verification statistics, return 200 |
