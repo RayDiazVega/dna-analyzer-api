@@ -6,7 +6,7 @@ public class Constant {
 
   public static final String mutant = "{\n"
       + "    \"dna\": [\n"
-      + "        \"AAGCGA\",\n"
+      + "        \"ATGCGA\",\n"
       + "        \"CAGTGC\",\n"
       + "        \"TTATGT\",\n"
       + "        \"AGAAGG\",\n"
@@ -26,6 +26,6 @@ public class Constant {
       + "    ]\n"
       + "}";
 
-  public static final List<String> dna = List.of("AAGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA",
+  public static final List<String> dna = List.of("ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA",
       "TCACTG");
 }
