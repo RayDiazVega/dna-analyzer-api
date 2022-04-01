@@ -27,9 +27,8 @@ public class DnaAnalyzerController {
   public ResponseEntity<Void> validateDNA(@Valid @RequestBody Human human) {
     if (dnaAnalyzerService.validateDNA(human)) {
       return ResponseEntity.ok().build();
-    } else {
-      return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
   }
 
   @Operation(summary = "Get verification statistics")

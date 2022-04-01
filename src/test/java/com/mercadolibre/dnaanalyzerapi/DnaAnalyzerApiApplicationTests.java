@@ -13,14 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 @AllArgsConstructor(onConstructor_ = {@Autowired})
 class DnaAnalyzerApiApplicationTests {
 
-	DnaAnalyzerController dnaAnalyzerController;
-	DnaAnalyzerService dnaAnalyzerService;
-	DnaAnalyzerDao dnaAnalyzerDao;
+  DnaAnalyzerController dnaAnalyzerController;
+  DnaAnalyzerService dnaAnalyzerService;
+  DnaAnalyzerDao dnaAnalyzerDao;
 
-	@Test
-	void contextLoads() {
-		Assertions.assertNotNull(dnaAnalyzerController);
-		Assertions.assertNotNull(dnaAnalyzerService);
-		Assertions.assertNotNull(dnaAnalyzerDao);
-	}
+  @Test
+  void contextLoads() {
+    Assertions.assertNotNull(dnaAnalyzerController);
+    Assertions.assertNotNull(dnaAnalyzerService);
+    Assertions.assertNotNull(dnaAnalyzerDao);
+  }
 }
