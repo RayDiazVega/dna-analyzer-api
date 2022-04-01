@@ -110,6 +110,10 @@ public class DnaAnalyzerServiceImpl implements DnaAnalyzerService {
 
   @Override
   public Stats getStats() {
-    return null;
+    List<Human> humans = dnaAnalyzerDao.findAll();
+    long mutantDNACount = humans.stream().filter(Human::getIsMutant).count();
+    return Stats.builder().mutantDNACount((int) mutantDNACount).humanDNACount(humans.size())
+        .ratio(Float.valueOf(String.format("%.2f", mutantDNACount / ((float) humans.size()))
+            .replace(",", "."))).build();
   }
 }

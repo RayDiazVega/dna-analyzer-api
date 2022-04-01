@@ -11,5 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DnaAnalyzerDao extends CrudRepository<Human, String> {
 
+  List<Human> findAll();
+
   Optional<Human> findByDna(List<String> dna);
 }
