@@ -54,7 +54,7 @@ Tambien se puede probar de manera local accediendo al Swagger en http://localhos
 Para probar la API hosteada en AWS use los endpoints `POST /mutant/` y `GET /stats`  en la carpeta AWS Endpoints de la coleccion o ejecutar los comandos anteriores cambiando 
 `localhost:8080` por `dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com`:
 ```sh
-curl --location --request POST 'http://ldnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/mutant/' \
+curl --location --request POST 'http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/mutant/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "dna": [
@@ -70,5 +70,5 @@ curl --location --request POST 'http://ldnaanalyzerapi-env.eba-pbepzfyx.sa-east-
  ```sh
 curl --location --request GET 'http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/stats'
 ```
-Tambien se puede probar de manera local accediendo al Swagger en http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/swagger-ui/index.html#/
+Tambien se puede probar la API hosteada en AWS accediendo al Swagger en http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/swagger-ui/index.html#/
 
