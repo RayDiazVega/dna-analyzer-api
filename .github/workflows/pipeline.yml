@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  pipeline:
     runs-on: ubuntu-latest
     steps:
     
@@ -26,13 +26,14 @@ jobs:
     - name: Build with Maven
       run: mvn package -DskipTests
       
-    - name: Deploy to EB
+    - name: Deploy to Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v20
       with:
+        region: sa-east-1
         aws_access_key: AKIAQERSPK2SCHKKOGXM
         aws_secret_key: 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
         application_name: dna-analyzer-api
         environment_name: Dnaanalyzerapi-env
-        version_label: 12345
-        region: sa-east-1
+        version_label: ${{ github.SHA }}
+        version_description: ${{ github.event.head_commit.message }}
         deployment_package: target/dna-analyzer-api-0.0.1-SNAPSHOT.jar
