@@ -5,12 +5,13 @@
 
 API REST para identificar si un humano es mutante según su ADN y proveer estadísticas de las verificaciones de ADN.
 
-- Enlace al problema planteado [aqui](https://github.com/RayDiazVega/dna-analyzer-api/blob/main/static/Examen_Mercadolibre_-_Mutantes.pdf)
+- Enlace al problema planteado [aqui](docs/Examen_Mercadolibre_-_Mutantes.pdf)
 
 ## Instrucciones de ejecucion
 
 Instalar previamente las siguientes herramientas:
-```sh
+
+```text
 Java 11
 Maven 3.8.5
 Git 2.35.1
@@ -23,14 +24,18 @@ git clone https://github.com/RayDiazVega/dna-analyzer-api.git
 ```
 
 En la carpeta del proyecto ejecutar los comandos:
+
 ```sh
 mvn clean package
 java -jar target/dna-analyzer-api-0.0.1-SNAPSHOT.jar
 ```
 
-Abrir Postman, descargar e importar la coleccion [dna-analyzer-api](https://github.com/RayDiazVega/dna-analyzer-api/blob/main/static/dna-analyzer-api.postman_collection.json). 
+Abrir Postman, descargar e importar la
+coleccion [dna-analyzer-api](docs/dna-analyzer-api.postman_collection.json).
 
-Si se quiere probar la API de manera local use los endpoints `POST /mutant/` y `GET /stats`  en la carpeta localhost de la coleccion o ejecutar los siguientes comandos: 
+Si se quiere probar la API de manera local use los endpoints `POST /mutant/` y `GET /stats`  en la
+carpeta localhost de la coleccion o ejecutar los siguientes comandos:
+
 ```sh
 curl --location --request POST 'http://localhost:8080/dna-analyzer-api/mutant/' \
 --header 'Content-Type: application/json' \
@@ -83,3 +88,17 @@ en http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-ana
 |:----------:|:------------------------------:|:---------------------------------------:|
 | `/mutant/` | Valid DNA sequence, return 200 |         Not allowed, return 400         |
 |  `/stats`  |    Not allowed, return 400     | Get verification statistics, return 200 |
+
+## Pruebas
+
+Se preparo un conjunto de pruebas unitarias en la ruta `src/test` con una cobertura del **84%**, se
+pueden ejecutar las pruebas en la raiz del proyecto con el comando:
+
+```sh
+mvn test
+```
+
+Adicionalmente se realizo un [tets de carga](docs/dna-analyzer-api.postman_load_testing.json) donde
+se hicieron 200 peticiones a la API con un tiempo de respuesta promedio de 333.37ms y en un tiempo
+total de 65.131s
+
