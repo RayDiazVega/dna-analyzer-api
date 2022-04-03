@@ -438,7 +438,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"dna\": [\n        \"CTGCC\",\n        \"CAGTGC\",\n        \"TTATGT\",\n        \"AGAAGG\",\n        \"ACCCTA\",\n        \"TCACTG\"\n    ]\n}"
+              "raw": "{\n    \"dna\": [\n        \"ATGCGA\",\n        \"CAGTGC\",\n        \"TTATGT\",\n        \"AGAAGG\",\n        \"CCCCTA\",\n        \"TCACTG\"\n    ]\n}"
             },
             "url": {
               "raw": "http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/mutant/",

@@ -7,7 +7,7 @@
 
 API REST para identificar si un humano es mutante según su ADN y proveer estadísticas de las verificaciones de ADN.
 
-- Enlace al problema planteado [aqui](docs/Examen_Mercadolibre_-_Mutantes.pdf)
+- Enlace al problema planteado [aqui](.github/docs/Examen_Mercadolibre_-_Mutantes.pdf)
 
 ## Instrucciones de ejecucion
 
@@ -33,7 +33,7 @@ java -jar target/dna-analyzer-api-0.0.1-SNAPSHOT.jar
 ```
 
 Abrir Postman, descargar e importar la
-coleccion [dna-analyzer-api](docs/dna-analyzer-api.postman_collection.json).
+coleccion [dna-analyzer-api](.github/docs/dna-analyzer-api.postman_collection.json).
 
 Si se quiere probar la API de manera local use los endpoints `POST /mutant/` y `GET /stats`  en la
 carpeta localhost de la coleccion o ejecutar los siguientes comandos:
@@ -100,7 +100,7 @@ pueden ejecutar las pruebas en la raiz del proyecto con el comando:
 mvn test
 ```
 
-Adicionalmente se realizo un [tets de carga](docs/dna-analyzer-api.postman_load_testing.json) donde
-se hicieron 200 peticiones a la API con un tiempo de respuesta promedio de 333.37ms y en un tiempo
-total de 65.131s
+Adicionalmente se realizo
+un [tets de carga](.github/docs/dna-analyzer-api.postman_load_testing.json) donde se hicieron 200
+peticiones a la API con un tiempo de respuesta promedio de 333.37ms y en un tiempo total de 65.131s
 
