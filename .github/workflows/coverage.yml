@@ -27,6 +27,7 @@ jobs:
       run: mvn -B test
 
     - name: Generate JaCoCo badge
+      id: jacoco
       uses: cicirello/jacoco-badge-generator@v2
       with:
         badges-directory: badges
