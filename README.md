@@ -1,6 +1,8 @@
 # DNA Analyzer API 
 
-[![Java CI with Maven](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml/badge.svg?branch=main)](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml) ![code quality score](https://api.codiga.io/project/32332/score/svg) ![.github/workflows/coverage.yml](https://github.com/RayDiazVega/dna-analyzer-api/blob/main/.github/badges/coverage.svg)
+[![Java CI with Maven](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml/badge.svg?branch=main)](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml) ![code quality score](https://api.codiga.io/project/32332/score/svg) ![Coverage](.github/badges/jacoco.svg) ![Branches](.github/badges/branches.svg)
+
+
 
 
 API REST para identificar si un humano es mutante según su ADN y proveer estadísticas de las verificaciones de ADN.
