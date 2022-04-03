@@ -20,14 +20,13 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '11'
-        distribution: 'temurin'
+        distribution: 'liberica'
         cache: maven
       
     - name: Build with Maven
       run: mvn -B test
 
     - name: Generate JaCoCo badge
-      id: jacoco
       uses: cicirello/jacoco-badge-generator@v2
       with:
         badges-directory: badges
