@@ -10,6 +10,8 @@ API REST para identificar si un humano es mutante seg√∫n su ADN y proveer estad√
 
 ## Instrucciones de ejecucion
 
+### Ejecucion local
+
 Instalar previamente las siguientes herramientas:
 
 ```text
@@ -57,6 +59,8 @@ curl --location --request GET 'http://localhost:8080/dna-analyzer-api/stats'
 
 Tambien se puede probar de manera local accediendo al Swagger
 en http://localhost:8080/dna-analyzer-api/swagger-ui/index.html#/
+
+### Ejecucion remota
 
 Para probar la API hosteada en AWS use los endpoints `POST /mutant/` y `GET /stats`  en la carpeta
 AWS Endpoints de la coleccion o ejecutar los comandos anteriores cambiando `localhost:8080`
