@@ -1,13 +1,12 @@
 # DNA Analyzer API 
 
-[![Java CI with Maven](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml/badge.svg?branch=main)](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml) ![Coverage](.github/badges/jacoco.svg) ![Branches](.github/badges/branches.svg)
-
-
-
+| [![Java CI with Maven](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml/badge.svg?branch=main)](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml) | ![Coverage](.github/badges/jacoco.svg) | ![Branches](.github/badges/branches.svg) |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------:|:----------------------------------------:|
 
 API REST para identificar si un humano es mutante según su ADN y proveer estadísticas de las verificaciones de ADN.
 
-- Enlace al problema planteado [aqui](.github/docs/Examen_Mercadolibre_-_Mutantes.pdf)
+- [Problema planteado](.github/docs/Examen_Mercadolibre_-_Mutantes.pdf)
+- [Documentacion de la API](http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/swagger-ui/index.html#/)
 
 ## Instrucciones de ejecucion
 
