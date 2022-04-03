@@ -93,7 +93,7 @@ en http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-ana
 
 ## Pruebas
 
-Se preparo un conjunto de pruebas unitarias en la ruta `src/test` con una cobertura del **84%**, se
+Se preparo un conjunto de pruebas unitarias en la ruta `src/test` con una cobertura del **84.3%**, se
 pueden ejecutar las pruebas en la raiz del proyecto con el comando:
 
 ```sh
