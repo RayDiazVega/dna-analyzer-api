@@ -104,3 +104,6 @@ Adicionalmente se realizo
 un [tets de carga](.github/docs/dna-analyzer-api.postman_load_testing.json) donde se hicieron 200
 peticiones a la API con un tiempo de respuesta promedio de 333.37ms y en un tiempo total de 65.131s
 
+### Resultados de monitoreo
+![image](https://user-images.githubusercontent.com/36030774/161441288-6e6e1bfa-6083-4e44-9b10-420f9807da8c.png)
+
