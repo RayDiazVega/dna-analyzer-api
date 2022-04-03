@@ -1,6 +1,6 @@
 # DNA Analyzer API 
 
-[![Java CI with Maven](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml/badge.svg?branch=main)](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml) ![code quality score](https://api.codiga.io/project/32332/score/svg) ![Coverage](.github/badges/jacoco.svg) ![Branches](.github/badges/branches.svg)
+[![Java CI with Maven](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml/badge.svg?branch=main)](https://github.com/RayDiazVega/dna-analyzer-api/actions/workflows/pipeline.yml) ![Coverage](.github/badges/jacoco.svg) ![Branches](.github/badges/branches.svg)
 
 
 
