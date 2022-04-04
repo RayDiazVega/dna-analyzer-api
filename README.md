@@ -105,19 +105,18 @@ mvn test
 ```
 
 Adicionalmente se realizó
-una [prueba de carga](.github/docs/dna-analyzer-api.postman_load_testing.json) donde se hicieron 200
-peticiones a la API con un tiempo de respuesta promedio de 333.37 ms y en un tiempo total de 65.131
-s.
+una [prueba de carga](.github/docs/dna-analyzer-api.postman_load_testing.json) de 200 peticiones a
+la API con un tiempo de respuesta promedio de 333.37 ms y en un tiempo total de 65.131 s.
 
 ### Resultados de monitoreo
 
-![Resultados de monitoreo](https://user-images.githubusercontent.com/36030774/161441288-6e6e1bfa-6083-4e44-9b10-420f9807da8c.png "Resultados de monitoreo")
+![Resultados de monitoreo](https://user-images.githubusercontent.com/36030774/161441288-6e6e1bfa-6083-4e44-9b10-420f9807da8c.png)
 
 ## Arquitectura
 
 ### Diagrama de flujo
 
-![Diagrama de flujo](.github/docs/Diagrama_de_flujo.svg "Diagrama de flujo")
+![Diagrama de flujo](.github/docs/Diagrama_de_flujo.svg)
 
 Se decidió utilizar Spring Boot, ya que facilita la creación de aplicaciones independientes basadas
 en Spring Framework, ideales para desplegar en servicios como Elastic Beanstalk.
@@ -143,23 +142,35 @@ solución:
       hay más de una secuencias de 4 letras iguales, no es mutante y devuelve `Forbidden`.
 4. Finalmente se guarda en base de datos en ADN y la validación, `true` si es mutante o `false` si
    no es mutante y se devuelve la respuesta, `OK` si es mutante o `Forbidden` si no es mutante.
-   
- ### Diagramas del sistema
- 
- ![Github Actions](https://user-images.githubusercontent.com/36030774/161473025-95e5d7bc-929c-42d7-b932-441d42464082.png)
- > Fuente de la imagen: https://medium.com/javarevisited/how-to-deploy-springboot-app-to-elastic-beanstalk-using-github-actions-ci-cd-30b4557b4fb8
- 
- Se utilizo [Github Actions](.github/workflows/pipeline.yml) para una mayor eficiencia al construir, probar y desplegar la nueva versión a Elastic Beanstalk. Se carga el archivo en S3, se crea una nueva versión en Elastic Beanstalk y se implementa esa versión en el entorno.
- 
- ![Elastic Beanstalk](https://user-images.githubusercontent.com/36030774/161474947-c29c9761-4e2c-4bf8-a26a-7e9b71862bee.png)
+
+### Diagramas del sistema
+
+![Github Actions](https://user-images.githubusercontent.com/36030774/161473025-95e5d7bc-929c-42d7-b932-441d42464082.png)
+> Fuente de la imagen: https://medium.com/javarevisited/how-to-deploy-springboot-app-to-elastic-beanstalk-using-github-actions-ci-cd-30b4557b4fb8
+
+Se utilizó [Github Actions](.github/workflows/pipeline.yml) para una mayor eficiencia al construir,
+probar y desplegar la nueva versión a Elastic Beanstalk. Se carga el archivo en S3, se crea una
+nueva versión en Elastic Beanstalk y se implementa esa versión en el entorno.
+
+![Elastic Beanstalk](https://user-images.githubusercontent.com/36030774/161474947-c29c9761-4e2c-4bf8-a26a-7e9b71862bee.png)
 ![Elastic Beanstalk](https://user-images.githubusercontent.com/36030774/161475016-3c0205f4-a4e0-4b7a-9bed-180e45a8214f.png)
 > Fuente de la imagen: https://dev.to/frosnerd/deploying-an-http-api-on-aws-using-elastic-beanstalk-5dh7
 
-Se decidió utilizar Elastic Beanstalk, ya que permite implementar aplicaciones rápidamente, gestiona automaticamente el aprovisionamiento de la capacidad, el equilibrio de carga, el escalado automático y monitorización del estado de la aplicación. Reduce la complejidad de la administración y permite consentrarse en el desarrolo de la aplicacion.
+Se decidió utilizar Elastic Beanstalk, ya que permite implementar aplicaciones rápidamente, gestiona
+automáticamente el aprovisionamiento de la capacidad, el equilibrio de carga, el escalado automático
+y monitorización del estado de la aplicación. Reduce la complejidad de la administración y permite
+concentrarse en el desarrollo de la aplicación.
 
-Y como base de datos se utilizo DynamoDB, por su capasidad de autoescalado horizontal, es decir escala automáticamente las tablas hacia arriba y hacia abajo para ajustar la capacidad y mantener el rendimiento, permitiendo flexibilidad, disponibilidad y una latencia de milisegundos a cualquier escala.
+Y como base de datos se utilizó DynamoDB, por su capacidad de autoescalado horizontal, es decir
+escala automáticamente las tablas hacia arriba y hacia abajo para ajustar la capacidad y mantener el
+rendimiento, permitiendo flexibilidad, disponibilidad y una latencia de milisegundos a cualquier
+escala.
 
 ## Conclusión
 
-Con esto se da cumplimiento a los entregables solicitos en el planteamiento:
-- [x] Codigo fuente
+Con esto se da cumplimiento a los entregables solicitados en el planteamiento:
+
+- [x] [Codio fuente.](https://github.com/RayDiazVega/dna-analyzer-api)
+- [x] [Instrucciones de cómo ejecutar el programa o la API.](#instrucciones-de-ejecución)
+- [x] [Documentación de la arquitectura del proyecto, Cloud y las decisiones tomadas.](#arquitectura)
+- [x] [URL de la API.](http://dnaanalyzerapi-env.eba-pbepzfyx.sa-east-1.elasticbeanstalk.com/dna-analyzer-api/swagger-ui/index.html#/)
