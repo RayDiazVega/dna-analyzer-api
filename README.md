@@ -151,5 +151,8 @@ solución:
  
  Se utilizo [Github Actions](.github/workflows/pipeline.yml) para una mayor eficiencia al construir, probar y desplegar la nueva versión a Elastic Beanstalk. Se carga el archivo en S3, se crea una nueva versión en Elastic Beanstalk y se implementa esa versión en el entorno.
  
- 
+ ![Elastic Beanstalk](https://user-images.githubusercontent.com/36030774/161474947-c29c9761-4e2c-4bf8-a26a-7e9b71862bee.png)
+![Elastic Beanstalk](https://user-images.githubusercontent.com/36030774/161475016-3c0205f4-a4e0-4b7a-9bed-180e45a8214f.png)
+> Fuente de la imagen: https://dev.to/frosnerd/deploying-an-http-api-on-aws-using-elastic-beanstalk-5dh7
 
+Se decidió utilizar Elastic Beanstalk, ya que permite implementar aplicaciones rápidamente, gestiona automaticamente el aprovisionamiento de la capacidad, el equilibrio de carga, el escalado automático y monitorización del estado de la aplicación. Reduce la complejidad de la administración y permite consentrarse en el desarrolo de la aplicacion.
