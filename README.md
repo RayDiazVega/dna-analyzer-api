@@ -143,3 +143,13 @@ solución:
       hay más de una secuencias de 4 letras iguales, no es mutante y devuelve `Forbidden`.
 4. Finalmente se guarda en base de datos en ADN y la validación, `true` si es mutante o `false` si
    no es mutante y se devuelve la respuesta, `OK` si es mutante o `Forbidden` si no es mutante.
+   
+ ### Diagramas del sistema
+ 
+ ![Github Actions](https://user-images.githubusercontent.com/36030774/161473025-95e5d7bc-929c-42d7-b932-441d42464082.png)
+ > Fuente de la imagen: https://medium.com/javarevisited/how-to-deploy-springboot-app-to-elastic-beanstalk-using-github-actions-ci-cd-30b4557b4fb8
+ 
+ Se utilizo [Github Actions](.github/workflows/pipeline.yml) para una mayor eficiencia al construir, probar y desplegar la nueva versión a Elastic Beanstalk. Se carga el archivo en S3, se crea una nueva versión en Elastic Beanstalk y se implementa esa versión en el entorno.
+ 
+ 
+
