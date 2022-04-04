@@ -156,3 +156,5 @@ solución:
 > Fuente de la imagen: https://dev.to/frosnerd/deploying-an-http-api-on-aws-using-elastic-beanstalk-5dh7
 
 Se decidió utilizar Elastic Beanstalk, ya que permite implementar aplicaciones rápidamente, gestiona automaticamente el aprovisionamiento de la capacidad, el equilibrio de carga, el escalado automático y monitorización del estado de la aplicación. Reduce la complejidad de la administración y permite consentrarse en el desarrolo de la aplicacion.
+
+Y como base de datos se utilizo DynamoDB, por su capasidad de autoescalado horizontal, es decir escala automáticamente las tablas hacia arriba y hacia abajo para ajustar la capacidad y mantener el rendimiento, permitiendo flexibilidad, disponibilidad y una latencia de milisegundos a cualquier escala.
