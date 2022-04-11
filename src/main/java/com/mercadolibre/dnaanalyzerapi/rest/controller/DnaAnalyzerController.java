@@ -25,10 +25,8 @@ public class DnaAnalyzerController {
   @Operation(summary = "Valid DNA sequence")
   @PostMapping(value = "/mutant/", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Void> validateDNA(@Valid @RequestBody Human human) {
-    if (dnaAnalyzerService.validateDNA(human)) {
-      return ResponseEntity.ok().build();
-    }
-    return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+    return dnaAnalyzerService.validateDNA(human) ? ResponseEntity.ok().build() :
+        ResponseEntity.status(HttpStatus.FORBIDDEN).build();
   }
 
   @Operation(summary = "Get verification statistics")

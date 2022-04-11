@@ -14,16 +14,16 @@ import org.springframework.context.annotation.Configuration;
 @EnableDynamoDBRepositories(basePackages = "com.mercadolibre.dnaanalyzerapi.dao")
 public class DynamoDBConfig {
 
-  @Value("${aws.dynamodb.accesskey}")
-  private String dynamodbAccessKey;
+  @Value("${amazon.aws.accesskey}")
+  private String awsAccessKey;
 
-  @Value("${aws.dynamodb.secretkey}")
-  private String dynamodbSecretKey;
+  @Value("${amazon.aws.secretkey}")
+  private String awsSecretKey;
 
   @Bean
   public AmazonDynamoDB amazonDynamoDB() {
     return AmazonDynamoDBClientBuilder.standard().withRegion(Regions.SA_EAST_1)
         .withCredentials(new AWSStaticCredentialsProvider(
-            new BasicAWSCredentials(dynamodbAccessKey, dynamodbSecretKey))).build();
+            new BasicAWSCredentials(awsAccessKey, awsSecretKey))).build();
   }
 }
