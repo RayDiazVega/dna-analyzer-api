@@ -1,7 +1,7 @@
 package com.mercadolibre.dnaanalyzerapi.rest.controller;
 
 import com.mercadolibre.dnaanalyzerapi.constant.Constant;
-import com.mercadolibre.dnaanalyzerapi.dao.DnaAnalyzerDao;
+import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.DnaAnalyzerDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

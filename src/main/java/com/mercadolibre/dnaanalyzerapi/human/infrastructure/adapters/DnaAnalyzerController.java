@@ -1,8 +1,8 @@
-package com.mercadolibre.dnaanalyzerapi.rest.controller;
+package com.mercadolibre.dnaanalyzerapi.human.infrastructure.adapters;
 
-import com.mercadolibre.dnaanalyzerapi.dto.Human;
-import com.mercadolibre.dnaanalyzerapi.dto.Stats;
-import com.mercadolibre.dnaanalyzerapi.service.DnaAnalyzerService;
+import com.mercadolibre.dnaanalyzerapi.human.dto.Human;
+import com.mercadolibre.dnaanalyzerapi.human.dto.Stats;
+import com.mercadolibre.dnaanalyzerapi.human.application.DnaAnalyzerService;
 import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

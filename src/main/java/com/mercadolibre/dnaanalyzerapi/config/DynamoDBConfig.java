@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableDynamoDBRepositories(basePackages = "com.mercadolibre.dnaanalyzerapi.dao")
+@EnableDynamoDBRepositories("com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports")
 public class DynamoDBConfig {
 
   @Value("${amazon.aws.accesskey}")

@@ -1,6 +1,6 @@
-package com.mercadolibre.dnaanalyzerapi.dao;
+package com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports;
 
-import com.mercadolibre.dnaanalyzerapi.dto.Human;
+import com.mercadolibre.dnaanalyzerapi.human.dto.Human;
 import java.util.List;
 import java.util.Optional;
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;

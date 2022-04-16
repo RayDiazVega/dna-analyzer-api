@@ -1,6 +1,6 @@
 package com.mercadolibre.dnaanalyzerapi.rest.controller;
 
-import com.mercadolibre.dnaanalyzerapi.service.DnaAnalyzerService;
+import com.mercadolibre.dnaanalyzerapi.human.application.DnaAnalyzerService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

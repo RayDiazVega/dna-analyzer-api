@@ -1,8 +1,8 @@
 package com.mercadolibre.dnaanalyzerapi;
 
-import com.mercadolibre.dnaanalyzerapi.dao.DnaAnalyzerDao;
-import com.mercadolibre.dnaanalyzerapi.rest.controller.DnaAnalyzerController;
-import com.mercadolibre.dnaanalyzerapi.service.DnaAnalyzerService;
+import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.DnaAnalyzerDao;
+import com.mercadolibre.dnaanalyzerapi.human.infrastructure.adapters.DnaAnalyzerController;
+import com.mercadolibre.dnaanalyzerapi.human.application.DnaAnalyzerService;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

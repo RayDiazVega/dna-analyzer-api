@@ -1,8 +1,8 @@
-package com.mercadolibre.dnaanalyzerapi.service;
+package com.mercadolibre.dnaanalyzerapi.human.application;
 
-import com.mercadolibre.dnaanalyzerapi.dao.DnaAnalyzerDao;
-import com.mercadolibre.dnaanalyzerapi.dto.Human;
-import com.mercadolibre.dnaanalyzerapi.dto.Stats;
+import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.DnaAnalyzerDao;
+import com.mercadolibre.dnaanalyzerapi.human.dto.Human;
+import com.mercadolibre.dnaanalyzerapi.human.dto.Stats;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
