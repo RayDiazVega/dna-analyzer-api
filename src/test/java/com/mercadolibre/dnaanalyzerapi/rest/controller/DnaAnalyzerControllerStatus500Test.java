@@ -1,6 +1,7 @@
 package com.mercadolibre.dnaanalyzerapi.rest.controller;
 
-import com.mercadolibre.dnaanalyzerapi.human.application.DnaAnalyzerService;
+import com.mercadolibre.dnaanalyzerapi.human.application.HumanService;
+import com.mercadolibre.dnaanalyzerapi.stats.application.StatsService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,11 @@ class DnaAnalyzerControllerStatus500Test {
   MockMvc mockMvc;
 
   @MockBean
-  DnaAnalyzerService dnaAnalyzerService;
+  StatsService statsService;
 
   @Test
   void getStats() throws Exception {
-    Mockito.when(dnaAnalyzerService.getStats()).thenThrow(NullPointerException.class);
+    Mockito.when(statsService.getStats()).thenThrow(NullPointerException.class);
 
     mockMvc.perform(MockMvcRequestBuilders.get("/stats"))
         .andExpectAll(MockMvcResultMatchers.status().isInternalServerError(),

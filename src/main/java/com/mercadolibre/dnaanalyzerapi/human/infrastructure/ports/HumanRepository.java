@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @EnableScan
 @Repository
-public interface DnaAnalyzerDao extends CrudRepository<Human, String> {
+public interface HumanRepository extends CrudRepository<Human, String> {
 
   List<Human> findAll();
 

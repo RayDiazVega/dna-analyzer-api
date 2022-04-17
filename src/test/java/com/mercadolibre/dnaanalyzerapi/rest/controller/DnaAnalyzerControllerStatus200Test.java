@@ -1,7 +1,7 @@
 package com.mercadolibre.dnaanalyzerapi.rest.controller;
 
 import com.mercadolibre.dnaanalyzerapi.constant.Constant;
-import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.DnaAnalyzerDao;
+import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.HumanRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,7 +20,7 @@ class DnaAnalyzerControllerStatus200Test {
   MockMvc mockMvc;
 
   @Autowired
-  DnaAnalyzerDao dnaAnalyzerDao;
+  HumanRepository humanRepository;
 
   @Test
   void isMutant() throws Exception {
@@ -29,7 +29,7 @@ class DnaAnalyzerControllerStatus200Test {
         .andExpectAll(MockMvcResultMatchers.status().isOk())
         .andDo(MockMvcResultHandlers.print());
 
-    dnaAnalyzerDao.delete(dnaAnalyzerDao.findByDna(Constant.dna).get());
+    humanRepository.delete(humanRepository.findByDna(Constant.dna).get());
   }
 
   @Test

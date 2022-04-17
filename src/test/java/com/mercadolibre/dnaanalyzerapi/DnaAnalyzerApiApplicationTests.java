@@ -1,8 +1,8 @@
 package com.mercadolibre.dnaanalyzerapi;
 
-import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.DnaAnalyzerDao;
-import com.mercadolibre.dnaanalyzerapi.human.infrastructure.adapters.DnaAnalyzerController;
-import com.mercadolibre.dnaanalyzerapi.human.application.DnaAnalyzerService;
+import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.HumanRepository;
+import com.mercadolibre.dnaanalyzerapi.human.infrastructure.adapters.HumanController;
+import com.mercadolibre.dnaanalyzerapi.human.application.HumanService;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,9 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @AllArgsConstructor(onConstructor_ = {@Autowired})
 class DnaAnalyzerApiApplicationTests {
 
-  DnaAnalyzerController dnaAnalyzerController;
-  DnaAnalyzerService dnaAnalyzerService;
-  DnaAnalyzerDao dnaAnalyzerDao;
+  HumanController dnaAnalyzerController;
+  HumanService dnaAnalyzerService;
+  HumanRepository dnaAnalyzerDao;
 
   @Test
   void contextLoads() {

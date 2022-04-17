@@ -1,8 +1,7 @@
 package com.mercadolibre.dnaanalyzerapi.human.application;
 
-import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.DnaAnalyzerDao;
 import com.mercadolibre.dnaanalyzerapi.human.dto.Human;
-import com.mercadolibre.dnaanalyzerapi.human.dto.Stats;
+import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.HumanRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -11,10 +10,10 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class DnaAnalyzerService {
+public class HumanService {
 
   @Autowired
-  private DnaAnalyzerDao dnaAnalyzerDao;
+  private HumanRepository dnaAnalyzerDao;
 
   public boolean validateDNA(Human human) {
 
@@ -104,13 +103,5 @@ public class DnaAnalyzerService {
 
     log.info("true, is mutant");
     return true;
-  }
-
-  public Stats getStats() {
-    List<Human> humans = dnaAnalyzerDao.findAll();
-    long mutantDNACount = humans.stream().filter(Human::getIsMutant).count();
-    return Stats.builder().mutantDNACount((int) mutantDNACount).humanDNACount(humans.size())
-        .ratio(Float.valueOf(String.format("%.2f", mutantDNACount / ((float) humans.size()))
-            .replace(",", "."))).build();
   }
 }
