@@ -3,6 +3,8 @@ package com.mercadolibre.dnaanalyzerapi;
 import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.HumanRepository;
 import com.mercadolibre.dnaanalyzerapi.human.infrastructure.adapters.HumanController;
 import com.mercadolibre.dnaanalyzerapi.human.application.HumanService;
+import com.mercadolibre.dnaanalyzerapi.stats.application.StatsService;
+import com.mercadolibre.dnaanalyzerapi.stats.infrastructure.adapters.StatsController;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,14 +15,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 @AllArgsConstructor(onConstructor_ = {@Autowired})
 class DnaAnalyzerApiApplicationTests {
 
-  HumanController dnaAnalyzerController;
-  HumanService dnaAnalyzerService;
-  HumanRepository dnaAnalyzerDao;
+  HumanController humanController;
+  HumanService humanService;
+  HumanRepository humanRepository;
+  StatsController statsController;
+  StatsService statsService;
 
   @Test
   void contextLoads() {
-    Assertions.assertNotNull(dnaAnalyzerController);
-    Assertions.assertNotNull(dnaAnalyzerService);
-    Assertions.assertNotNull(dnaAnalyzerDao);
+    Assertions.assertNotNull(humanController);
+    Assertions.assertNotNull(humanService);
+    Assertions.assertNotNull(humanRepository);
+    Assertions.assertNotNull(statsController);
+    Assertions.assertNotNull(statsService);
   }
 }

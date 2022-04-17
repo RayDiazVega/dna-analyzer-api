@@ -1,6 +1,7 @@
-package com.mercadolibre.dnaanalyzerapi.rest.controller;
+package com.mercadolibre.dnaanalyzerapi.human.infrastructure.adapters;
 
 import com.mercadolibre.dnaanalyzerapi.constant.Constant;
+import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.HumanRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,15 +14,28 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class DnaAnalyzerControllerStatus400Test {
+class HumanControllerTest {
 
   @Autowired
   MockMvc mockMvc;
 
+  @Autowired
+  HumanRepository humanRepository;
+
   String notMutant = Constant.notMutant;
 
   @Test
-  void isMutant() throws Exception {
+  void validateDNAStatus200() throws Exception {
+    mockMvc.perform(MockMvcRequestBuilders.post("/mutant/")
+            .contentType(MediaType.APPLICATION_JSON).content(Constant.mutant))
+        .andExpectAll(MockMvcResultMatchers.status().isOk())
+        .andDo(MockMvcResultHandlers.print());
+
+    humanRepository.delete(humanRepository.findByDna(Constant.dna).get());
+  }
+
+  @Test
+  void validateDNAStatus400() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders.delete("/mutant/"))
         .andExpectAll(MockMvcResultMatchers.status().isBadRequest(),
             MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON),
@@ -43,7 +57,7 @@ class DnaAnalyzerControllerStatus400Test {
   }
 
   @Test
-  void isNotMutant() throws Exception {
+  void isNotMutantStatus403() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders.post("/mutant/")
             .contentType(MediaType.APPLICATION_JSON).content(notMutant))
         .andExpectAll(MockMvcResultMatchers.status().isForbidden())
