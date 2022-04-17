@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/stats")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class DnaAnalyzerController {
+public class StatsController {
 
   @Autowired
   private StatsService statsService;
