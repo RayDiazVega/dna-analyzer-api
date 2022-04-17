@@ -36,14 +36,6 @@ class HumanControllerTest {
 
   @Test
   void validateDNAStatus400() throws Exception {
-    mockMvc.perform(MockMvcRequestBuilders.delete("/mutant/"))
-        .andExpectAll(MockMvcResultMatchers.status().isBadRequest(),
-            MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON),
-            MockMvcResultMatchers.jsonPath("$.error")
-                .value("Request method 'DELETE' not supported"),
-            MockMvcResultMatchers.jsonPath("$.message").value("Client error"))
-        .andDo(MockMvcResultHandlers.print());
-
     notMutant = notMutant.replace("A", "X");
 
     mockMvc.perform(MockMvcRequestBuilders.post("/mutant/")
@@ -57,10 +49,21 @@ class HumanControllerTest {
   }
 
   @Test
-  void isNotMutantStatus403() throws Exception {
+  void validateDNAStatus403() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders.post("/mutant/")
             .contentType(MediaType.APPLICATION_JSON).content(notMutant))
         .andExpectAll(MockMvcResultMatchers.status().isForbidden())
+        .andDo(MockMvcResultHandlers.print());
+  }
+
+  @Test
+  void validateDNAStatus405() throws Exception {
+    mockMvc.perform(MockMvcRequestBuilders.delete("/mutant/"))
+        .andExpectAll(MockMvcResultMatchers.status().isMethodNotAllowed(),
+            MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON),
+            MockMvcResultMatchers.jsonPath("$.error")
+                .value("Request method 'DELETE' not supported"),
+            MockMvcResultMatchers.jsonPath("$.message").value("Client error"))
         .andDo(MockMvcResultHandlers.print());
   }
 }
