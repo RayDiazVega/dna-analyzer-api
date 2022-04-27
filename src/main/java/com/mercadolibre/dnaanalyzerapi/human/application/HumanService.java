@@ -45,9 +45,8 @@ public class HumanService {
     for (int i = 0; i < size; i++) {
       for (int j = 0; j < size; j++) {
         if (j < size - 3) {
-          if (dna.get(i).charAt(j) == dna.get(i).charAt(j + 1) &&
-              dna.get(i).charAt(j + 1) == dna.get(i).charAt(j + 2) &&
-              dna.get(i).charAt(j + 2) == dna.get(i).charAt(j + 3)) {
+          if (areEqualChars(dna.get(i).charAt(j), dna.get(i).charAt(j + 1),
+              dna.get(i).charAt(j + 2), dna.get(i).charAt(j + 3))) {
             if (horizontalMatches < 1) {
               horizontalMatches++;
             } else {
@@ -58,9 +57,8 @@ public class HumanService {
         }
 
         if (i < size - 3) {
-          if (dna.get(i).charAt(j) == dna.get(i + 1).charAt(j) &&
-              dna.get(i + 1).charAt(j) == dna.get(i + 2).charAt(j) &&
-              dna.get(i + 2).charAt(j) == dna.get(i + 3).charAt(j)) {
+          if (areEqualChars(dna.get(i).charAt(j), dna.get(i + 1).charAt(j),
+              dna.get(i + 2).charAt(j), dna.get(i + 3).charAt(j))) {
             if (verticalMatches < 1) {
               verticalMatches++;
             } else {
@@ -71,9 +69,8 @@ public class HumanService {
         }
 
         if (j < size - 3 && i < size - 3) {
-          if (dna.get(i).charAt(j) == dna.get(i + 1).charAt(j + 1) &&
-              dna.get(i + 1).charAt(j + 1) == dna.get(i + 2).charAt(j + 2) &&
-              dna.get(i + 2).charAt(j + 2) == dna.get(i + 3).charAt(j + 3)) {
+          if (areEqualChars(dna.get(i).charAt(j), dna.get(i + 1).charAt(j + 1),
+              dna.get(i + 2).charAt(j + 2), dna.get(i + 3).charAt(j + 3))) {
             if (obliqueLeftMatches < 1) {
               obliqueLeftMatches++;
             } else {
@@ -82,9 +79,8 @@ public class HumanService {
             }
           }
 
-          if (dna.get(i).charAt(size - 1 - j) == dna.get(i + 1).charAt(size - 2 - j) &&
-              dna.get(i + 1).charAt(size - 2 - j) == dna.get(i + 2).charAt(size - 3 - j) &&
-              dna.get(i + 2).charAt(size - 3 - j) == dna.get(i + 3).charAt(size - 4 - j)) {
+          if (areEqualChars(dna.get(i).charAt(size - 1 - j), dna.get(i + 1).charAt(size - 2 - j),
+              dna.get(i + 2).charAt(size - 3 - j), dna.get(i + 3).charAt(size - 4 - j))) {
             if (obliqueRightMatches < 1) {
               obliqueRightMatches++;
             } else {
@@ -103,5 +99,9 @@ public class HumanService {
 
     log.info("true, is mutant");
     return true;
+  }
+
+  boolean areEqualChars(char a, char b, char c, char d) {
+    return a == b && b == c && c == d;
   }
 }
