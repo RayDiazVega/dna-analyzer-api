@@ -11,11 +11,11 @@ public class Stats {
 
   @Schema(example = "40")
   @JsonProperty("count_mutant_dna")
-  private Integer mutantDNACount;
+  private Long mutantDNACount;
 
   @Schema(example = "100")
   @JsonProperty("count_human_dna")
-  private Integer humanDNACount;
+  private Long humanDNACount;
 
   @Schema(example = "0.4")
   private Float ratio;

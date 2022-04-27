@@ -1,9 +1,7 @@
 package com.mercadolibre.dnaanalyzerapi.stats.application;
 
-import com.mercadolibre.dnaanalyzerapi.human.dto.Human;
 import com.mercadolibre.dnaanalyzerapi.human.infrastructure.ports.HumanRepository;
 import com.mercadolibre.dnaanalyzerapi.stats.dto.Stats;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +14,10 @@ public class StatsService {
   private HumanRepository humanRepository;
 
   public Stats getStats() {
-    List<Human> humans = humanRepository.findAll();
-    long mutantDNACount = humans.stream().filter(Human::getIsMutant).count();
-    return Stats.builder().mutantDNACount((int) mutantDNACount).humanDNACount(humans.size())
-        .ratio(Float.valueOf(String.format("%.2f", mutantDNACount / ((float) humans.size()))
+    long humanDNACount = humanRepository.count();
+    long mutantDNACount = humanRepository.countByIsMutantTrue();
+    return Stats.builder().mutantDNACount(mutantDNACount).humanDNACount(humanDNACount)
+        .ratio(Float.valueOf(String.format("%.2f", mutantDNACount / ((float) humanDNACount))
             .replace(",", "."))).build();
   }
 }
